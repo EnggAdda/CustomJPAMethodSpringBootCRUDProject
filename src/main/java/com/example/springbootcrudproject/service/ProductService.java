@@ -35,7 +35,20 @@ public class ProductService {
 
     }
 
+   public List<Product> getAllJPQL(){
 
+       return productRepository.getAllProductsUsingJPQL();
+   }
+
+    public List<Product> getAllJPQLQueryParam(String name){
+
+        return productRepository.getAllProductsUsingJPQLQueryParam(name);
+    }
+
+    public List<Product> getAllJPQLNative(){
+
+        return productRepository.getAllProductsUsingNative();
+    }
 
 }
 

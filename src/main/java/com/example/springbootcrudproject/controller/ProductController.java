@@ -46,6 +46,22 @@ public class ProductController {
         productService.deleteById(id);
     }
 
+    @GetMapping("/jpql")
+    public List<Product> jpqlFindAll()
+    {
+        return productService.getAllJPQL();
+    }
+
+    @GetMapping("/jpqlq/{name}")
+    public List<Product> jpqlFindAllJPQL(@PathVariable String name)
+    {
+        return productService.getAllJPQLQueryParam(name);
+    }
+    @GetMapping("/native")
+    public List<Product> jpqlFindAllNative()
+    {
+        return productService.getAllJPQLNative();
+    }
 
 }
 
