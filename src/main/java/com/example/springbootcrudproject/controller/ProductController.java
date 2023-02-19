@@ -3,6 +3,10 @@ package com.example.springbootcrudproject.controller;
 
 import com.example.springbootcrudproject.entity.Product;
 import com.example.springbootcrudproject.service.ProductService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +16,14 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
+    Logger logger = LogManager.getLogger("ProductController.class");
     @Autowired
     private ProductService productService;
+
+    public void print(){
+        logger.info(productService);
+
+    }
 
     @GetMapping
     public List<Product> findAll() {
