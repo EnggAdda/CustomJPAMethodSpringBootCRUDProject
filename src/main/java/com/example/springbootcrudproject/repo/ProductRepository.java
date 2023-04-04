@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
@@ -24,6 +25,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("select p from Product p where p.name =:n")
     List<Product> getAllProductsUsingJPQLQueryParam(@Param("n") String name);
 
+    //@Query("select sum(p.price) as sum from Product p where p.name =:n")
+//    @Query("select count(p.price) as count from Product p where p.name =:n")
+    @Query("select sum(case when p.name = :n then p.price else 0.0 end ) as sumOfProducts,\n" +
+            "\t sum(case when p.name = :n then p.price else 0.0 end ) as sumOfProducts2\n from Product p ")
+    Map<String ,Double> getAllProductsPriceUsingJPQLQueryParam(@Param("n") String name);
     @Query(value ="select * from Product ", nativeQuery = true)
     List<Product> getAllProductsUsingNative();
 

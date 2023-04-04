@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -66,6 +67,12 @@ public class ProductController {
     public List<Product> jpqlFindAllJPQL(@PathVariable String name)
     {
         return productService.getAllJPQLQueryParam(name);
+    }
+
+    @GetMapping("/jpqlSum/{name}")
+    public Map<String,Double> jpqlFindAllProductSumJPQL(@PathVariable String name)
+    {
+        return productService.getSumOfAllProductWithParticularNameJPQLQueryParam(name);
     }
     @GetMapping("/native")
     public List<Product> jpqlFindAllNative()
